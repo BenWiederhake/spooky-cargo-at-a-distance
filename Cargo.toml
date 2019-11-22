@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 rand_xoshiro = "0.4.0"
 rand_core = "0.5.1"
-rand = "0.7.2"  # Uncomment this line and everything breaks.  Huh?!
+rand = "0.7.2"  # Comment this line and everything breaks.  Huh?!

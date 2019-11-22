@@ -72,3 +72,26 @@ The crate `rand_core` defines [`SeedableRng`](https://docs.rs/rand_core/0.5.1/ra
 Meanwhile, the crate `rand` defines [`SeedableRng`](https://docs.rs/rand/0.7.2/rand/trait.SeedableRng.html#method.from_entropy), which *does* define `from_entropy()`.
 
 However, `main.rs` clearly says `use rand_core::SeedableRng;`, so I'm not sure how that works.
+
+## Not a versions-issue
+
+Note that this has nothing to do with versions, as in both cases the same versions (or nothing) are used.
+
+Excerpt from `Cargo.lock` with `rand`:
+
+```
+"checksum rand 0.7.2 (registry+https://github.com/rust-lang/crates.io-index)" = "3ae1b169243eaf61759b8475a998f0a385e42042370f3a7dbaf35246eacc8412"
+"checksum rand_chacha 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "03a2a90da8c7523f554344f921aa97283eadf6ac484a6d2a7d0212fa7f8d6853"
+"checksum rand_core 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)" = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
+"checksum rand_hc 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
+"checksum rand_xoshiro 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a9fcdd2e881d02f1d9390ae47ad8e5696a9e4be7b547a1da2afbc61973217004"
+```
+
+Excerpt from `Cargo.lock` without `rand`:
+
+```
+"checksum rand_core 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)" = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
+"checksum rand_xoshiro 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a9fcdd2e881d02f1d9390ae47ad8e5696a9e4be7b547a1da2afbc61973217004"
+```
+
+Yes, I deleted `Cargo.lock` between the runs.
